@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+
+url= 'https://raw.githubusercontent.com/Geoyi/Cleaning-Titanic-Data/master/titanic_original.csv'
+titanic = pd.read_csv(url)
+titanic.head()
+gender=titanic['sex'].astype('category')
+gender=gender.cat.codes
+gender.head()
+
+plt.pie(gender.value_counts(),labels=titanic['sex'].unique(),autopct='%1.1f%%')
+plt.title('Male/Female proportion')
+plt.axis('equal')
+plt.show()
+
+plt.figure(figsize=(8,6))
+plt.scatter(titanic['age'],titanic['fare'],c=gender)
+plt.xlabel('age')
+plt.ylabel('fare paid')
+plt.show()
